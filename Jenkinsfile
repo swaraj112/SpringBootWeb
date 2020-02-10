@@ -8,7 +8,7 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-        stage(Build Docker Image){
+        stage(Build-Docker-img){
             agent{
               dockerfile{
                 filename 'Dockerfile'
