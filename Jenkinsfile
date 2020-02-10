@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Build image'){
           steps{
-            sh 'docker build -t swaraj1123/springboot:latest .'
+            docker.withTool('docker build -t swaraj1123/springboot:latest .')
           }
         }
     }
