@@ -1,15 +1,15 @@
 pipeline {
-    agent any
+    agent { label 'dockerserver' }
     stages {
-        stage('Initialize')
-        {
-          def mavenHome  = tool 'maven 3.6.3'
-          env.PATH = "${mavenHome}/bin:${env.PATH}"
-        }
         stage('Build') {
+            agent {
+                docker {
+                  label 'dockerserver'
+                  image 'maven:3.6.3-jdk-8'
+                }
+            }
             steps {
-                sh 'mvn clean install -DskipTests'
+                sh 'mvn clean install'
             }
         }
-    }
 }
