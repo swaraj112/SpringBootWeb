@@ -1,10 +1,10 @@
 pipeline {
-    agent { label 'dockerserver' }
+    agent { label 'Docker_Jenkins' }
     stages {
         stage('Build') {
             agent {
                 docker {
-                  label 'dockerserver'
+                  label 'Docker_Jenkins'
                   image 'maven:3.6.3-jdk-8'
                 }
             }
