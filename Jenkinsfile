@@ -8,11 +8,5 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-        stage('Build image'){
-          steps{
-            docker.withTool('docker build -t swaraj1123/springboot:latest .')
-          }
-        }
     }
-
 }
