@@ -9,11 +9,9 @@ pipeline {
             }
         }
         stage('Build-Docker-img'){
-            agent{
-              dockerfile{
-                filename 'Dockerfile'
-              }
-            }
+          steps {
+            sh 'docker build -t swaraj1123/springboot:latest .'
+          }
         }
     }
 }
