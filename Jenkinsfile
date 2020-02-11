@@ -20,9 +20,4 @@ node{
     stage('Kuberneetes Deploy'){
         kubernetesDeploy configs: 'spboot-deployment.yml', dockerCredentials: [[credentialsId: '064af0a5-cde4-480c-8a14-87eabe184f04']], enableConfigSubstitution: false, kubeConfig: [path: ''], kubeconfigId: 'e9d7ade7-21d9-4f64-ae80-891fd1b25713', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
     }
-
-    stage('Success Mail'){
-      mail bcc: '', body: 'Build Success!', cc: 'swaraj.biswal@target.com', from: '', replyTo: '', subject: 'Build Success!', to: 'swaraj.biswal@target.com'
-    }
-
 }
