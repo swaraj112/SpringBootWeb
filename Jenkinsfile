@@ -1,4 +1,9 @@
 node{
+    stage('Initialize'){
+      def dockerHome = tool 'docker'
+      def mavenHome = tool 'maven'
+      env.PATH = "${dockerHome}/bin:${mavenHome}/bin:${env.PATH}"
+    }
     stage('Checkout'){
         git credentialsId: 'afb29c50-d501-4c1d-8852-ce1a6193e8a6', url: 'https://github.com/swarajgit/SpringBootWeb.git'
     }
