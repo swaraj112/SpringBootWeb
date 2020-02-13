@@ -8,7 +8,7 @@ node{
         git credentialsId: 'afb29c50-d501-4c1d-8852-ce1a6193e8a6', url: 'https://github.com/swarajgit/SpringBootWeb.git'
     }
     stage('Build'){
-        sh 'mvn clean install'
+        sh 'mvn clean install -DskipTests'
     }
     stage('Build docker Image'){
         sh 'docker build -t swaraj1123/springboot:latest .'
