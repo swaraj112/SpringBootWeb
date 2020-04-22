@@ -5,7 +5,7 @@ node{
       env.PATH = "${dockerHome}/bin:${mavenHome}/bin:${env.PATH}"
     }
     stage('Checkout'){
-        git credentialsId: 'afb29c50-d501-4c1d-8852-ce1a6193e8a6', url: 'https://github.com/swarajgit/SpringBootWeb.git'
+        git url: 'https://github.com/swarajgit/SpringBootWeb.git'
     }
     stage('Build'){
         sh 'mvn clean install -DskipTests'
@@ -18,7 +18,6 @@ node{
             sh 'docker push swaraj1123/springboot:latest'
         }
     }
-
     stage('Deploy to GKE') {
             step <object of type com.google.jenkins.plugins.k8sengine.KubernetesEngineBuilder>
         }
