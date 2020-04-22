@@ -19,6 +19,6 @@ node{
         }
     }
     stage('Deploy to GKE') {
-            step <object of type com.google.jenkins.plugins.k8sengine.KubernetesEngineBuilder>
+        step([$class: 'KubernetesEngineBuilder', projectId: 'river-karma-275008', clusterName: 'spring-rest-cluster', location: 'us-central1-c', manifestPattern: 'deployment.yaml', credentialsId: 'Google_cloud_serevice_key', verifyDeployments: true])
         }
 }
