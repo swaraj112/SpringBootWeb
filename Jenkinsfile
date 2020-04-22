@@ -14,11 +14,12 @@ node{
         sh 'docker build -t swaraj1123/springboot:latest .'
     }
     stage('Docker Image push'){
-        withDockerRegistry(credentialsId: '064af0a5-cde4-480c-8a14-87eabe184f04', toolName: 'docker') {
+        withDockerRegistry(credentialsId: 'swaraj_docker', toolName: 'docker') {
             sh 'docker push swaraj1123/springboot:latest'
         }
     }
-    stage('Kuberneetes Deploy'){
-        kubernetesDeploy configs: 'spboot-deployment.yml', dockerCredentials: [[credentialsId: '064af0a5-cde4-480c-8a14-87eabe184f04']], enableConfigSubstitution: false, kubeConfig: [path: ''], kubeconfigId: 'e9d7ade7-21d9-4f64-ae80-891fd1b25713', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
-    }
+
+    stage('Deploy to GKE') {
+            step <object of type com.google.jenkins.plugins.k8sengine.KubernetesEngineBuilder>
+        }
 }
