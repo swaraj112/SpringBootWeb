@@ -13,7 +13,7 @@ spec:
         app: springboot-web-api
     spec:
       containers:
-      - image: swaraj1123/springboot:latest
+      - image: gcr.io/jenkins-275110/springboot_new:latest
         name: springboot
         imagePullPolicy: Always
 
