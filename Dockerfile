@@ -1,5 +1,12 @@
+FROM maven:3.5.2-jdk-8-alpine AS MAVEN_BUILD
+MAINTAINER Brian Hannaway
+COPY pom.xml /build/
+COPY src /build/src/
+WORKDIR /build/
+RUN mvn package
 FROM openjdk:8-jre-alpine
 EXPOSE 8080
-WORKDIR /usr/src/app/target
-COPY /target/*.jar .
-ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Dspring.profiles.active=$DEPLOY_ENV -Djava.security.egd=file:/dev/./urandom -Xmx1000m -Xms128m -jar /usr/src/app/target/*.jar" ]
+WORKDIR /app
+COPY --from=MAVEN_BUILD /build/target/*.jar /app/
+RUN ls
+ENTRYPOINT [ "sh", "-c", "java -jar *.jar" ]
